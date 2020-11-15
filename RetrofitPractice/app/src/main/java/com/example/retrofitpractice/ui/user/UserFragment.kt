@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.example.retrofitpractice.R
 import com.example.retrofitpractice.data.api.RetrofitBuilder
 import com.example.retrofitpractice.data.api.SearchRepository
@@ -38,6 +39,14 @@ class UserFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        userViewModel.requestUsers("v")
         binding.rvSearch.adapter = adapter
+    }
+
+    override fun onResume() {
+        super.onResume()
+        userViewModel.allData.observe(this, Observer { allData->
+            allData?.let { adapter.setData(allData.items) }
+        })
     }
 }
