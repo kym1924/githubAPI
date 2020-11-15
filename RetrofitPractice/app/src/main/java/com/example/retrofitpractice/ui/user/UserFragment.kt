@@ -16,7 +16,8 @@ import com.example.retrofitpractice.util.room.SearchDatabase
 
 class UserFragment : Fragment() {
     private val userViewModel : UserViewModel by activityViewModels()
-    lateinit var binding : FragmentUserBinding
+    private val adapter = UserAdapter()
+    private lateinit var binding : FragmentUserBinding
 
     override fun onAttach(context : Context){
         super.onAttach(context)
@@ -33,5 +34,10 @@ class UserFragment : Fragment() {
         binding.userViewModel = userViewModel
         binding.lifecycleOwner = this
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.rvSearch.adapter = adapter
     }
 }
