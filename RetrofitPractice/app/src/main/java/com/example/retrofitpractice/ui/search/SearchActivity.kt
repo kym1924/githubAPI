@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.example.retrofitpractice.R
+import com.example.retrofitpractice.data.api.SearchRepository
 import com.example.retrofitpractice.databinding.ActivitySearchBinding
 import com.example.retrofitpractice.ui.main.MainActivity
 import com.example.retrofitpractice.util.room.SearchDatabase
@@ -23,8 +24,8 @@ class SearchActivity : AppCompatActivity() {
         binding.searchViewModel = searchViewModel
         binding.lifecycleOwner = this
 
-        val searchDao = SearchDatabase.getDatabase(this).searchDao()
-        searchViewModel.init(searchDao)
+        val searchRepository = SearchRepository(SearchDatabase.getDatabase(this).searchDao())
+        searchViewModel.init(searchRepository)
     }
 
     override fun onStart() {
