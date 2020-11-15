@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 class SearchViewModel : ViewModel() {
 
     val search = MutableLiveData<String>("")
-    lateinit var repository : SearchRepository
+    private lateinit var repository : SearchRepository
     lateinit var allData : LiveData<List<Search>>
 
     fun init(searchRepository : SearchRepository) {
