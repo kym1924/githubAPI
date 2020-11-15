@@ -1,15 +1,12 @@
 package com.example.retrofitpractice.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.retrofitpractice.R
 import com.example.retrofitpractice.databinding.ActivityMainBinding
 import com.example.retrofitpractice.ui.search.SearchActivity
-import com.example.retrofitpractice.util.addMainPagerListener
-import com.example.retrofitpractice.util.addTabLayoutListener
 import com.example.retrofitpractice.util.startActivity
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -24,6 +21,12 @@ class MainActivity : AppCompatActivity() {
             tabItems = "USER REPO"
             lifecycleOwner = this@MainActivity
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        if(intent!=null) binding.etSearch.setText(intent.getStringExtra("search"))
     }
 
     override fun onResume() {

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofitpractice.R
 import com.example.retrofitpractice.data.Search
 import com.example.retrofitpractice.ui.main.MainActivity
-import com.example.retrofitpractice.util.startActivity
+import com.example.retrofitpractice.util.startActivityWithSearch
 
 class SearchAdapter(private val context : Context, private val searchViewModel : SearchViewModel) : RecyclerView.Adapter<SearchAdapter.VHolder>(){
     var search = emptyList<Search>()
@@ -34,7 +34,7 @@ class SearchAdapter(private val context : Context, private val searchViewModel :
 
         fun bind(data : Search) {
             search.text = data.search
-            search.setOnClickListener { context.startActivity<MainActivity>() }
+            search.setOnClickListener { context.startActivityWithSearch<MainActivity>(data.search) }
 
             itemView.findViewById<ImageView>(R.id.img_delete).setOnClickListener { searchViewModel.delete(data) }
         }

@@ -10,7 +10,7 @@ import com.example.retrofitpractice.R
 import com.example.retrofitpractice.databinding.ActivitySearchBinding
 import com.example.retrofitpractice.ui.main.MainActivity
 import com.example.retrofitpractice.util.room.SearchDatabase
-import com.example.retrofitpractice.util.startActivity
+import com.example.retrofitpractice.util.startActivityWithSearch
 import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : AppCompatActivity() {
@@ -43,8 +43,7 @@ class SearchActivity : AppCompatActivity() {
         et_search.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 searchViewModel.insert()
-                startActivity<MainActivity>()
-                finish()
+                this.startActivityWithSearch<MainActivity>(binding.etSearch.text.toString())
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
