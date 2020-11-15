@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         vp_main.addMainPagerListener(tab_main)
+        vp_main.adapter = MainPagerAdapter(supportFragmentManager)
         tab_main.addTabLayoutListener(vp_main)
         tab_main.addTab(tab_main.newTab().setText("Users"))
         tab_main.addTab(tab_main.newTab().setText("Repo"))
