@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofitpractice.R
-import com.example.retrofitpractice.data.Search
+import com.example.retrofitpractice.data.model.Search
 import com.example.retrofitpractice.ui.main.MainActivity
 import com.example.retrofitpractice.util.startActivityWithSearch
 

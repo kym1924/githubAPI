@@ -1,4 +1,4 @@
-package com.example.retrofitpractice.data
+package com.example.retrofitpractice.data.model
 
 import android.os.Parcelable
 import androidx.room.Entity

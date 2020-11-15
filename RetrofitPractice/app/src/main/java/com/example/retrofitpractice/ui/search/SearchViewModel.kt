@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.retrofitpractice.data.Search
+import com.example.retrofitpractice.data.model.Search
 import com.example.retrofitpractice.util.room.SearchDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
