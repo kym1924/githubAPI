@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
         <data>
+            <import type="android.view.View" />
             <variable
                 name="searchViewModel"
                 type="com.example.retrofitpractice.ui.search.SearchViewModel"/>
@@ -44,6 +45,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/history"
                     android:layout_marginStart="20dp"
+                    android:visibility="@{searchViewModel.allData.size()>0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintTop_toBottomOf="@id/et_search"
                     app:layout_constraintStart_toStartOf="@id/et_search" />
 
@@ -53,6 +55,7 @@
                     android:layout_height="0dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginHorizontal="20dp"
+                    android:visibility="@{searchViewModel.allData.size()>0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintTop_toBottomOf="@id/tv_latest_search"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -66,6 +69,7 @@
                     android:text="@string/no_history"
                     android:textSize="30sp"
                     android:textStyle="bold"
+                    android:visibility="@{searchViewModel.allData.size()>0 ? View.GONE : View.VISIBLE}"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
