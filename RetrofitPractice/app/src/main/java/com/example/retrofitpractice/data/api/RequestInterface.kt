@@ -5,7 +5,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface RequestInterface {
-    @GET("/users")
+    @GET("users")
     suspend fun requestUsers(
         @Query("q") q : String
     ) : UsersData
