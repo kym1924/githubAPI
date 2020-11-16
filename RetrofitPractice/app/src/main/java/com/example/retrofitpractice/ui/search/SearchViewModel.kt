@@ -13,6 +13,8 @@ class SearchViewModel : ViewModel() {
 
     val tabItems = "USER REPO"
     val search = MutableLiveData<String>("")
+    val visibility = MutableLiveData<Boolean>(true)
+
     private lateinit var repository : SearchRepository
     lateinit var allData : LiveData<List<Search>>
 
@@ -32,5 +34,9 @@ class SearchViewModel : ViewModel() {
 
     fun delete(search : Search) = viewModelScope.launch(Dispatchers.IO) {
         repository.delete(search)
+    }
+
+    fun setVisibility() {
+        visibility.value = !visibility.value!!
     }
 }

@@ -1,7 +1,7 @@
 package com.example.retrofitpractice.ui.search
 
 import android.os.Bundle
-import android.view.View
+import android.view.inputmethod.EditorInfo
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -31,9 +31,15 @@ class SearchActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        binding.etSearch.setOnFocusChangeListener{ _, hasFocus ->
-            if(hasFocus) binding.searchLayout.visibility = View.VISIBLE
-            else binding.searchLayout.visibility = View.INVISIBLE
+        binding.etSearch.setOnFocusChangeListener{ _, _ -> searchViewModel.setVisibility() }
+
+        binding.etSearch.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                searchViewModel.insert()
+                binding.etSearch.clearFocus()
+                return@setOnEditorActionListener true
+            }
+            return@setOnEditorActionListener false
         }
     }
 }
