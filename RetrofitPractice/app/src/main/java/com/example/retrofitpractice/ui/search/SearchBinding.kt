@@ -3,6 +3,7 @@ package com.example.retrofitpractice.ui.search
 import android.view.View
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.FragmentManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.example.retrofitpractice.util.addMainPagerListener
 import com.example.retrofitpractice.util.addTabLayoutListener
@@ -38,5 +39,12 @@ object SearchBinding {
     fun setTabItems(tabLayout : TabLayout, tabItems : String) {
         tabLayout.addTab(tabLayout.newTab().setText(tabItems.split(" ")[0]))
         tabLayout.addTab(tabLayout.newTab().setText(tabItems.split(" ")[1]))
+    }
+
+    @BindingAdapter("setAdapter")
+    @JvmStatic
+    fun setAdapter(recyclerView : RecyclerView, searchViewModel : SearchViewModel) {
+        val adapter = SearchAdapter(searchViewModel)
+        recyclerView.adapter = adapter
     }
 }
