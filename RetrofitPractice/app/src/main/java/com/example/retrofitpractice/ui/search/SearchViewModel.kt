@@ -16,11 +16,11 @@ class SearchViewModel : ViewModel() {
     val visibility = MutableLiveData<Boolean>(true)
 
     private lateinit var repository : SearchRepository
-    lateinit var allData : LiveData<List<Search>>
+    lateinit var allSearch : LiveData<List<Search>>
 
     fun init(searchRepository : SearchRepository) {
         this.repository = searchRepository
-        allData = repository.getAll()
+        allSearch = repository.getAll()
     }
 
     fun resetSearch() {

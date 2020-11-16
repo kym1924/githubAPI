@@ -100,7 +100,7 @@
                 android:layout_marginStart="20dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:visibility="@{viewModel.allData.size()>0 ? View.VISIBLE : View.GONE}" />
+                android:visibility="@{viewModel.allSearch.size()>0 ? View.VISIBLE : View.GONE}" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_search"
@@ -114,9 +114,9 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/item_search_history"
-                android:visibility="@{viewModel.allData.size()>0 ? View.VISIBLE : View.GONE}"
+                android:visibility="@{viewModel.allSearch.size()>0 ? View.VISIBLE : View.GONE}"
                 setAdapter="@{viewModel}"
-                setListItem="@{viewModel.allData}"/>
+                setListItem="@{viewModel.allSearch}"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -128,7 +128,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:visibility="@{viewModel.allData.size()>0 ? View.GONE : View.VISIBLE}" />
+                android:visibility="@{viewModel.allSearch.size()>0 ? View.GONE : View.VISIBLE}" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
