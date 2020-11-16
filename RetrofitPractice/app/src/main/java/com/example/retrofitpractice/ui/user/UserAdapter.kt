@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofitpractice.R
-import com.example.retrofitpractice.data.model.Items
+import com.example.retrofitpractice.data.model.UsersItems
 
 class UserAdapter : RecyclerView.Adapter<UserAdapter.VHolder>(){
-    private var users = emptyList<Items>()
+    private var users = emptyList<UsersItems>()
 
     override fun onCreateViewHolder(parent : ViewGroup, viewType : Int)
             = VHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_search_user, parent, false))
@@ -20,13 +20,13 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.VHolder>(){
         holder.bind(users[position])
     }
 
-    internal fun setData(users: List<Items>) {
+    internal fun setData(users: List<UsersItems>) {
         this.users = users
         notifyDataSetChanged()
     }
 
     inner class VHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(data : Items) {
+        fun bind(data : UsersItems) {
             itemView.findViewById<TextView>(R.id.tv_id).text = data.login
             itemView.findViewById<TextView>(R.id.tv_url).text = data.html_url
         }

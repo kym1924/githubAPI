@@ -1,12 +1,12 @@
 package com.example.retrofitpractice.data.model
 
-data class UsersData (
+data class ReposData (
     val total_count : Int,
     val incomplete_results : Boolean,
-    val items : List<UsersItems>
+    val items : List<ReposItems>
 )
 
-data class UsersItems (
-    val login : String,
+data class ReposItems (
+    val full_name : String,
     val html_url : String
 )
