@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 
 class SearchViewModel : ViewModel() {
 
+    val tabItems = "USER REPO"
     val search = MutableLiveData<String>("")
     private lateinit var repository : SearchRepository
     lateinit var allData : LiveData<List<Search>>
@@ -20,7 +21,9 @@ class SearchViewModel : ViewModel() {
         allData = repository.getAll()
     }
 
-    fun resetSearch() { search.value="" }
+    fun resetSearch() {
+        search.value=""
+    }
 
     fun insert() = viewModelScope.launch(Dispatchers.IO) {
         val search = Search(idx = 0, search = search.value!!)
