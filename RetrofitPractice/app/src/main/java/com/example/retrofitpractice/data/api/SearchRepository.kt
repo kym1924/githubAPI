@@ -16,4 +16,6 @@ class SearchRepository(private val requestInterface : RequestInterface, private 
     }
 
     suspend fun requestUsers(q : String) = requestInterface.requestUsers(q)
+
+    suspend fun requestRepos(q : String) = requestInterface.requestRepos(q)
 }

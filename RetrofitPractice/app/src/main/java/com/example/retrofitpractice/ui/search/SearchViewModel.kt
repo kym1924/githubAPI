@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.retrofitpractice.data.api.SearchRepository
+import com.example.retrofitpractice.data.model.ReposData
 import com.example.retrofitpractice.data.model.Search
+import com.example.retrofitpractice.data.model.UsersData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -17,6 +19,14 @@ class SearchViewModel : ViewModel() {
 
     private lateinit var repository : SearchRepository
     lateinit var allSearch : LiveData<List<Search>>
+
+    private val _allUser = MutableLiveData<UsersData>()
+    val allUser : LiveData<UsersData>
+        get() = _allUser
+
+    private val _allRepo = MutableLiveData<ReposData>()
+    val allRepo : LiveData<ReposData>
+        get() = _allRepo
 
     fun init(searchRepository : SearchRepository) {
         this.repository = searchRepository
@@ -38,5 +48,13 @@ class SearchViewModel : ViewModel() {
 
     fun setVisibility() {
         visibility.value = !visibility.value!!
+    }
+
+    fun requestUsers(q : String) = viewModelScope.launch(Dispatchers.IO) {
+        _allUser.postValue(repository.requestUsers(q))
+    }
+
+    fun requestRepos(q : String) = viewModelScope.launch(Dispatchers.IO) {
+        _allRepo.postValue(repository.requestRepos(q))
     }
 }
