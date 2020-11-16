@@ -27,8 +27,10 @@ class SearchAdapter(private val searchViewModel : SearchViewModel) : RecyclerVie
     }
 
     inner class VHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+        private val search : TextView = itemView.findViewById(R.id.tv_latest_search)
         fun bind(data : Search) {
-            itemView.findViewById<TextView>(R.id.tv_latest_search).text = data.search
+            search.text = data.search
+            search.setOnClickListener { searchViewModel.search.value = search.text.toString() }
             itemView.findViewById<ImageView>(R.id.img_delete).setOnClickListener { searchViewModel.delete(data) }
         }
     }
