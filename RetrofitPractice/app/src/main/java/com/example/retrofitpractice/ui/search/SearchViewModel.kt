@@ -28,7 +28,7 @@ class SearchViewModel : ViewModel() {
     }
 
     fun insert() = viewModelScope.launch(Dispatchers.IO) {
-        val search = Search(idx = 0, search = search.value!!)
+        val search = Search(search = search.value!!)
         repository.insert(search)
     }
 

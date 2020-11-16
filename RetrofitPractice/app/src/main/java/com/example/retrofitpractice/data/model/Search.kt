@@ -8,7 +8,6 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @Entity(tableName = "searchDb")
 data class Search (
-    @PrimaryKey(autoGenerate = true)
-    val idx : Int,
+    @PrimaryKey
     val search : String
 ) : Parcelable
