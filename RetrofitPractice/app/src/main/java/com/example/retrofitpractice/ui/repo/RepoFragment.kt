@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.example.retrofitpractice.R
 import com.example.retrofitpractice.data.api.RetrofitBuilder
 import com.example.retrofitpractice.data.api.SearchRepository
@@ -38,5 +39,13 @@ class RepoFragment : Fragment() {
             lifecycleOwner = this@RepoFragment
         }
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d("lifeCycle", "onResume()")
+        searchViewModel.search.observe(this, Observer { search ->
+            search?.let { if(search!="") searchViewModel.requestRepos(search) }
+        })
     }
 }

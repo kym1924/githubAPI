@@ -2,12 +2,14 @@ package com.example.retrofitpractice.ui.user
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.example.retrofitpractice.R
 import com.example.retrofitpractice.data.api.RetrofitBuilder
 import com.example.retrofitpractice.data.api.SearchRepository
@@ -40,6 +42,9 @@ class UserFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        if(searchViewModel.search.value!="") { searchViewModel.requestUsers(searchViewModel.search.value!!) }
+        Log.d("lifeCycle", "onResume()")
+        searchViewModel.search.observe(this, Observer { search ->
+            search?.let { if(search!="") searchViewModel.requestUsers(search) }
+        })
     }
 }
