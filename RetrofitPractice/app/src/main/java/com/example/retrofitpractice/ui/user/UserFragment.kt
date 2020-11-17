@@ -47,4 +47,10 @@ class UserFragment : Fragment() {
             search?.let { if(search!="") searchViewModel.requestUsers(search) }
         })
     }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("lifeCycle", "onPause()")
+        searchViewModel.clearUsers()
+    }
 }

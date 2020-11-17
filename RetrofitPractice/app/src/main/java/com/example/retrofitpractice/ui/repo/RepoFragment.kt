@@ -48,4 +48,10 @@ class RepoFragment : Fragment() {
             search?.let { if(search!="") searchViewModel.requestRepos(search) }
         })
     }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("lifeCycle", "onPause()")
+        searchViewModel.clearRepos()
+    }
 }

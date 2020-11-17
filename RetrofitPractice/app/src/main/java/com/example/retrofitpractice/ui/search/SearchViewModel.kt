@@ -65,4 +65,12 @@ class SearchViewModel : ViewModel() {
     fun requestRepos(q : String) = viewModelScope.launch(Dispatchers.IO) {
         _allRepo.postValue(repository.requestRepos(q).items)
     }
+
+    fun clearUsers() {
+        _allUser.value = null
+    }
+
+    fun clearRepos() {
+        _allRepo.value = null
+    }
 }
