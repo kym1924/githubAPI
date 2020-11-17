@@ -19,6 +19,7 @@ class SearchViewModel : ViewModel() {
     val visibility = MutableLiveData<Boolean>(true)
 
     val userLayout = MutableLiveData<Int>(R.layout.item_search_user)
+    val repoLayout = MutableLiveData<Int>(R.layout.item_search_repo)
 
     private lateinit var repository : SearchRepository
     lateinit var allSearch : LiveData<List<Search>>
@@ -53,15 +54,15 @@ class SearchViewModel : ViewModel() {
         visibility.value = !visibility.value!!
     }
 
+    fun setSearchText(q : String) {
+        search.value = q
+    }
+
     fun requestUsers(q : String) = viewModelScope.launch(Dispatchers.IO) {
         _allUser.postValue(repository.requestUsers(q).items)
     }
 
     fun requestRepos(q : String) = viewModelScope.launch(Dispatchers.IO) {
         _allRepo.postValue(repository.requestRepos(q).items)
-    }
-
-    fun setSearchText(q : String) {
-        search.value = q
     }
 }
