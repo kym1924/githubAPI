@@ -57,4 +57,8 @@ class SearchViewModel : ViewModel() {
     fun requestRepos(q : String) = viewModelScope.launch(Dispatchers.IO) {
         _allRepo.postValue(repository.requestRepos(q))
     }
+
+    fun setSearchText(q : String) {
+        search.value = q
+    }
 }

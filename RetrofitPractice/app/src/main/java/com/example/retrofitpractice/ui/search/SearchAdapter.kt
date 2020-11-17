@@ -3,21 +3,23 @@ package com.example.retrofitpractice.ui.search
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
+import com.example.retrofitpractice.BR
 import com.example.retrofitpractice.R
 import com.example.retrofitpractice.data.model.Search
 
-class SearchAdapter(private val searchViewModel : SearchViewModel) : RecyclerView.Adapter<SearchAdapter.VHolder>(){
+
+class SearchAdapter<B : ViewDataBinding>(private val searchViewModel : SearchViewModel) : RecyclerView.Adapter<SearchAdapter<B>.VHolder<B>>(){
     var search = emptyList<Search>()
 
     override fun onCreateViewHolder(parent : ViewGroup, viewType : Int)
-            = VHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_search_history, parent, false))
+            = VHolder<B>(LayoutInflater.from(parent.context).inflate(R.layout.item_search_history, parent, false))
 
     override fun getItemCount() = search.size
 
-    override fun onBindViewHolder(holder: VHolder, position: Int) {
+    override fun onBindViewHolder(holder: VHolder<B>, position: Int) {
         holder.bind(search[position])
     }
 
@@ -26,12 +28,13 @@ class SearchAdapter(private val searchViewModel : SearchViewModel) : RecyclerVie
         notifyDataSetChanged()
     }
 
-    inner class VHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
-        private val search : TextView = itemView.findViewById(R.id.tv_latest_search)
-        fun bind(data : Search) {
-            search.text = data.search
-            search.setOnClickListener { searchViewModel.search.value = search.text.toString() }
-            itemView.findViewById<ImageView>(R.id.img_delete).setOnClickListener { searchViewModel.delete(data) }
+    inner class VHolder<B : ViewDataBinding>(itemView : View) : RecyclerView.ViewHolder(itemView) {
+
+        private val binding : B = DataBindingUtil.bind(itemView)!!
+
+        fun bind(search : Search) {
+            binding.setVariable(BR.search, search)
+            binding.setVariable(BR.searchViewModel, searchViewModel)
         }
     }
 }

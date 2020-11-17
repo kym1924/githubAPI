@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.example.retrofitpractice.data.model.Search
+import com.example.retrofitpractice.databinding.ItemSearchHistoryBinding
 import com.example.retrofitpractice.util.addMainPagerListener
 import com.example.retrofitpractice.util.addTabLayoutListener
 import com.google.android.material.tabs.TabLayout
@@ -45,13 +46,13 @@ object SearchBinding {
     @BindingAdapter("setAdapter")
     @JvmStatic
     fun setAdapter(recyclerView : RecyclerView, searchViewModel : SearchViewModel) {
-        val adapter = SearchAdapter(searchViewModel)
+        val adapter = SearchAdapter<ItemSearchHistoryBinding>(searchViewModel)
         recyclerView.adapter = adapter
     }
 
     @BindingAdapter("setListItem")
     @JvmStatic
     fun setListItem(recyclerView : RecyclerView, searchList : List<Search>?) {
-        if (recyclerView.adapter != null) with(recyclerView.adapter as SearchAdapter) { searchList?.let{ setData(it) } }
+        if (recyclerView.adapter != null) with(recyclerView.adapter as SearchAdapter<*>) { searchList?.let{ setData(it) } }
     }
 }
