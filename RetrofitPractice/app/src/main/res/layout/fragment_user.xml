@@ -6,8 +6,8 @@
 
     <data>
         <variable
-            name="userViewModel"
-            type="com.example.retrofitpractice.ui.user.UserViewModel"/>
+            name="viewModel"
+            type="com.example.retrofitpractice.ui.search.SearchViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
