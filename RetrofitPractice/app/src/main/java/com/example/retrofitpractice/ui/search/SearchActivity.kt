@@ -35,8 +35,10 @@ class SearchActivity : AppCompatActivity() {
 
         binding.etSearch.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                searchViewModel.insert()
-                binding.etSearch.clearFocus()
+                if(binding.etSearch.text.toString().isNotEmpty()) {
+                    searchViewModel.insert()
+                    binding.etSearch.clearFocus()
+                }
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
