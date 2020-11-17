@@ -26,7 +26,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:listitem="@layout/item_search_user" />
+            tools:listitem="@layout/item_search_user"
+            setUserAdapter="@{viewModel.userLayout}"
+            setUserItem="@{viewModel.allUser}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

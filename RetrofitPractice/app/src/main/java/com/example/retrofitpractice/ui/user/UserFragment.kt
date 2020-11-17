@@ -37,4 +37,9 @@ class UserFragment : Fragment() {
         }
         return binding.root
     }
+
+    override fun onResume() {
+        super.onResume()
+        if(searchViewModel.search.value!="") { searchViewModel.requestUsers(searchViewModel.search.value!!) }
+    }
 }
