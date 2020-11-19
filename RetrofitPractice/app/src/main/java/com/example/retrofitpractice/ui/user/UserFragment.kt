@@ -40,8 +40,8 @@ class UserFragment : Fragment() {
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
         Log.d("lifeCycle", "onResume()")
         searchViewModel.search.observe(this, Observer { search ->
             search?.let { if(search) searchViewModel.requestUsers() }
