@@ -1,7 +1,7 @@
 package com.example.retrofitpractice.data.api
 
 import com.example.retrofitpractice.data.model.Search
-import com.example.retrofitpractice.util.room.SearchDao
+import com.example.retrofitpractice.data.room.SearchDao
 
 class SearchRepository(private val requestInterface : RequestInterface, private val searchDao : SearchDao) {
 

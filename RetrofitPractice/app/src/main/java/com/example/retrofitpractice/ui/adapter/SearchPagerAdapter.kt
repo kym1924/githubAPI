@@ -1,4 +1,4 @@
-package com.example.retrofitpractice.ui.search
+package com.example.retrofitpractice.ui.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager

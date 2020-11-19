@@ -1,4 +1,4 @@
-package com.example.retrofitpractice.util.room
+package com.example.retrofitpractice.data.room
 
 import androidx.lifecycle.LiveData
 import androidx.room.*

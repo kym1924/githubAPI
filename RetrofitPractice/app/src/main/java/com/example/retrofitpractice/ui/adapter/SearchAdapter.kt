@@ -1,4 +1,4 @@
-package com.example.retrofitpractice.ui.search
+package com.example.retrofitpractice.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofitpractice.BR
 import com.example.retrofitpractice.R
 import com.example.retrofitpractice.data.model.Search
+import com.example.retrofitpractice.ui.search.SearchViewModel
 
 
 class SearchAdapter<B : ViewDataBinding>(private val searchViewModel : SearchViewModel) : RecyclerView.Adapter<SearchAdapter<B>.VHolder<B>>(){

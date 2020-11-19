@@ -14,7 +14,7 @@ import com.example.retrofitpractice.data.api.RetrofitBuilder
 import com.example.retrofitpractice.data.api.SearchRepository
 import com.example.retrofitpractice.databinding.FragmentUserBinding
 import com.example.retrofitpractice.ui.search.SearchViewModel
-import com.example.retrofitpractice.util.room.SearchDatabase
+import com.example.retrofitpractice.data.room.SearchDatabase
 
 class UserFragment : Fragment() {
     private lateinit var binding : FragmentUserBinding

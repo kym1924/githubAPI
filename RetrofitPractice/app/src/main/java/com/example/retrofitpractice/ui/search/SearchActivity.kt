@@ -9,7 +9,7 @@ import com.example.retrofitpractice.R
 import com.example.retrofitpractice.data.api.RetrofitBuilder
 import com.example.retrofitpractice.data.api.SearchRepository
 import com.example.retrofitpractice.databinding.ActivitySearchBinding
-import com.example.retrofitpractice.util.room.SearchDatabase
+import com.example.retrofitpractice.data.room.SearchDatabase
 
 class SearchActivity : AppCompatActivity() {
     private lateinit var binding : ActivitySearchBinding

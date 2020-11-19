@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.example.retrofitpractice.data.model.Search
 import com.example.retrofitpractice.databinding.ItemSearchHistoryBinding
+import com.example.retrofitpractice.ui.adapter.SearchAdapter
+import com.example.retrofitpractice.ui.adapter.SearchPagerAdapter
 import com.example.retrofitpractice.util.addMainPagerListener
 import com.example.retrofitpractice.util.addTabLayoutListener
 import com.google.android.material.tabs.TabLayout
@@ -21,7 +23,10 @@ object SearchBinding {
     @BindingAdapter("mainAdapter")
     @JvmStatic
     fun mainAdapter(viewPager: ViewPager, fragmentManager: FragmentManager) {
-        viewPager.adapter = SearchPagerAdapter(fragmentManager)
+        viewPager.adapter =
+            SearchPagerAdapter(
+                fragmentManager
+            )
     }
 
     @BindingAdapter("setTabListener")
@@ -46,7 +51,10 @@ object SearchBinding {
     @BindingAdapter("setAdapter")
     @JvmStatic
     fun setAdapter(recyclerView : RecyclerView, searchViewModel : SearchViewModel) {
-        val adapter = SearchAdapter<ItemSearchHistoryBinding>(searchViewModel)
+        val adapter =
+            SearchAdapter<ItemSearchHistoryBinding>(
+                searchViewModel
+            )
         recyclerView.adapter = adapter
     }
 
