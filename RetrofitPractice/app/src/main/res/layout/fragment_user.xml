@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View" />
         <variable
             name="viewModel"
             type="com.example.retrofitpractice.ui.search.SearchViewModel"/>
@@ -31,5 +32,17 @@
             setUserAdapter="@{viewModel.userLayout}"
             setUserItem="@{viewModel.allUser}"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_result"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="@{viewModel.allUser.size()>0 ? View.GONE : View.VISIBLE}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

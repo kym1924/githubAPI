@@ -87,6 +87,7 @@
             android:id="@+id/search_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="20dp"
             android:visibility="@{viewModel.visibility? View.GONE : View.VISIBLE}"
             app:layout_constraintTop_toBottomOf="@id/et_search"
             app:layout_constraintBottom_toBottomOf="parent"
