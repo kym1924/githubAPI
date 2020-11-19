@@ -2,6 +2,7 @@ package com.example.retrofitpractice.ui.user
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,17 +13,17 @@ import androidx.lifecycle.Observer
 import com.example.retrofitpractice.R
 import com.example.retrofitpractice.data.api.RetrofitBuilder
 import com.example.retrofitpractice.data.api.SearchRepository
+import com.example.retrofitpractice.data.room.SearchDatabase
 import com.example.retrofitpractice.databinding.FragmentUserBinding
 import com.example.retrofitpractice.ui.search.SearchViewModel
-import com.example.retrofitpractice.data.room.SearchDatabase
 
 class UserFragment : Fragment() {
     private lateinit var binding : FragmentUserBinding
     private val searchViewModel : SearchViewModel by activityViewModels()
 
-    override fun onAttach(context : Context){
+    override fun onAttach(context : Context) {
         super.onAttach(context)
-
+        Log.d("lifeCycle", "user : onAttach()")
         val searchRepository = SearchRepository(RetrofitBuilder.service, SearchDatabase.getDatabase(context).searchDao())
         searchViewModel.init(searchRepository)
     }
@@ -31,6 +32,7 @@ class UserFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        Log.d("lifeCycle", "user : onCreateView()")
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user, container, false)
         binding.apply{
             viewModel = searchViewModel
@@ -41,8 +43,15 @@ class UserFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        Log.d("lifeCycle", "user : onStart()")
         searchViewModel.search.observe(this, Observer { search ->
             search?.let { if(search) searchViewModel.requestUsers() }
         })
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("lifeCycle", "user : onPause()")
+        searchViewModel.clearRepos()
     }
 }
