@@ -9,5 +9,6 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = "searchDb")
 data class Search (
     @PrimaryKey
-    val search : String
+    val search : String,
+    val createdAt : String = System.currentTimeMillis().toString()
 ) : Parcelable

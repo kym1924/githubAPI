@@ -6,8 +6,8 @@ import com.example.retrofitpractice.data.model.Search
 
 @Dao
 interface SearchDao {
-    @Query("SELECT * from searchDb")
-    fun getAll() : LiveData<List<Search>>
+    @Query("SELECT * from searchDb ORDER BY createdAt DESC")
+    fun getSearch() : LiveData<List<Search>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(search : Search)

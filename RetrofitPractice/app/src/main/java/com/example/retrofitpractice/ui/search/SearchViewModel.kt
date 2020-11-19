@@ -38,7 +38,7 @@ class SearchViewModel : ViewModel() {
 
     fun init(searchRepository : SearchRepository) {
         this.repository = searchRepository
-        allSearch = repository.getAll()
+        allSearch = repository.getSearch()
     }
 
     fun resetKeyword() {
