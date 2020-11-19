@@ -4,7 +4,7 @@
 
     <data>
         <variable
-            name="user"
+            name="result"
             type="com.example.retrofitpractice.data.model.UsersItems"/>
     </data>
 
@@ -18,7 +18,7 @@
             android:id="@+id/tv_id"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{user.login}"
+            android:text="@{result.login}"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -30,7 +30,7 @@
             android:id="@+id/tv_url"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{user.html_url}"
+            android:text="@{result.html_url}"
             android:textSize="15sp"
             android:textColor="@color/black"
             android:layout_marginTop="10dp"

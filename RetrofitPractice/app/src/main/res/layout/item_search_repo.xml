@@ -4,7 +4,7 @@
 
     <data>
         <variable
-            name="repo"
+            name="result"
             type="com.example.retrofitpractice.data.model.ReposItems"/>
     </data>
 
@@ -18,7 +18,7 @@
             android:id="@+id/tv_id"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{repo.full_name}"
+            android:text="@{result.full_name}"
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="@color/black"
@@ -30,7 +30,7 @@
             android:id="@+id/tv_url"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{repo.html_url}"
+            android:text="@{result.html_url}"
             android:textSize="15sp"
             android:textColor="@color/black"
             android:layout_marginTop="10dp"
