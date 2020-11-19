@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 class SearchViewModel : ViewModel() {
 
     val tabItems = "USER REPO"
-    val search = MutableLiveData<String>("")
+    val keyword = MutableLiveData<String>("")
     val visibility = MutableLiveData<Boolean>(true)
 
     val userLayout = MutableLiveData<Int>(R.layout.item_search_user)
@@ -32,17 +32,21 @@ class SearchViewModel : ViewModel() {
     val allRepo : LiveData<List<ReposItems>>
         get() = _allRepo
 
+    private val _search = MutableLiveData<Boolean>()
+    val search : LiveData<Boolean>
+        get() = _search
+
     fun init(searchRepository : SearchRepository) {
         this.repository = searchRepository
         allSearch = repository.getAll()
     }
 
-    fun resetSearch() {
-        search.value=""
+    fun resetKeyword() {
+        keyword.value=""
     }
 
     fun insert() = viewModelScope.launch(Dispatchers.IO) {
-        val search = Search(search = search.value!!)
+        val search = Search(search = keyword.value!!)
         repository.insert(search)
     }
 
@@ -55,22 +59,18 @@ class SearchViewModel : ViewModel() {
     }
 
     fun setSearchText(q : String) {
-        search.value = q
+        keyword.value = q
     }
 
-    fun requestUsers(q : String) = viewModelScope.launch(Dispatchers.IO) {
-        _allUser.postValue(repository.requestUsers(q).items)
+    fun requestUsers() = viewModelScope.launch(Dispatchers.IO) {
+        _allUser.postValue(repository.requestUsers(keyword.value!!).items)
     }
 
-    fun requestRepos(q : String) = viewModelScope.launch(Dispatchers.IO) {
-        _allRepo.postValue(repository.requestRepos(q).items)
+    fun requestRepos() = viewModelScope.launch(Dispatchers.IO) {
+        _allRepo.postValue(repository.requestRepos(keyword.value!!).items)
     }
 
-    fun clearUsers() {
-        _allUser.value = null
-    }
+    fun search() { _search.value = true }
 
-    fun clearRepos() {
-        _allRepo.value = null
-    }
+    fun notSearch() { _search.value = false }
 }

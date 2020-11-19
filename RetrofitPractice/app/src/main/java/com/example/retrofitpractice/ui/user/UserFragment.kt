@@ -44,13 +44,13 @@ class UserFragment : Fragment() {
         super.onResume()
         Log.d("lifeCycle", "onResume()")
         searchViewModel.search.observe(this, Observer { search ->
-            search?.let { if(search!="") searchViewModel.requestUsers(search) }
+            search?.let { if(search) searchViewModel.requestUsers() }
         })
     }
 
     override fun onPause() {
         super.onPause()
         Log.d("lifeCycle", "onPause()")
-        searchViewModel.clearUsers()
+        searchViewModel.notSearch()
     }
 }
