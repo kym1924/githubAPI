@@ -71,6 +71,4 @@ class SearchViewModel : ViewModel() {
     }
 
     fun search() { _search.value = true }
-
-    fun notSearch() { _search.value = false }
 }

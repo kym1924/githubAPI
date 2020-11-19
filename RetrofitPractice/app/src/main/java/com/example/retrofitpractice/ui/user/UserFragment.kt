@@ -2,7 +2,6 @@ package com.example.retrofitpractice.ui.user
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,15 +41,8 @@ class UserFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        Log.d("lifeCycle", "onResume()")
         searchViewModel.search.observe(this, Observer { search ->
             search?.let { if(search) searchViewModel.requestUsers() }
         })
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("lifeCycle", "onPause()")
-        searchViewModel.notSearch()
     }
 }
