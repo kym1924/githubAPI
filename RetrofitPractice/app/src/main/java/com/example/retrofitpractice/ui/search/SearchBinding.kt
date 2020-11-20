@@ -23,10 +23,7 @@ object SearchBinding {
     @BindingAdapter("mainAdapter")
     @JvmStatic
     fun mainAdapter(viewPager: ViewPager, fragmentManager: FragmentManager) {
-        viewPager.adapter =
-            SearchPagerAdapter(
-                fragmentManager
-            )
+        viewPager.adapter = SearchPagerAdapter(fragmentManager)
     }
 
     @BindingAdapter("setTabListener")
@@ -51,10 +48,7 @@ object SearchBinding {
     @BindingAdapter("setAdapter")
     @JvmStatic
     fun setAdapter(recyclerView : RecyclerView, searchViewModel : SearchViewModel) {
-        val adapter =
-            SearchAdapter<ItemSearchHistoryBinding>(
-                searchViewModel
-            )
+        val adapter = SearchAdapter<ItemSearchHistoryBinding>(searchViewModel)
         recyclerView.adapter = adapter
     }
 

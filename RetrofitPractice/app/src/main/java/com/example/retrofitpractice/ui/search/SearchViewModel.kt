@@ -70,7 +70,9 @@ class SearchViewModel : ViewModel() {
         _allRepo.postValue(repository.requestRepos(keyword.value!!).items)
     }
 
-    fun search() { _search.value = true }
+    fun search() {
+        _search.value = true
+    }
 
     fun clearUsers() {
         _allUser.value = mutableListOf()
