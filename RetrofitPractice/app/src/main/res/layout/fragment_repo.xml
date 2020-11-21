@@ -8,7 +8,7 @@
         <import type="android.view.View" />
         <variable
             name="viewModel"
-            type="com.example.retrofitpractice.ui.search.SearchViewModel"/>
+            type="com.retrofit.github.ui.search.SearchViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,11 +18,11 @@
         tools:context=".ui.repo.RepoFragment">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_search"
+            android:id="@+id/rv_repo_result"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="12dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -33,10 +33,11 @@
             setRepoItem="@{viewModel.allRepo}"/>
 
         <TextView
+            android:id="@+id/tv_no_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/no_result"
-            android:textSize="30sp"
+            android:textSize="32sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             app:layout_constraintTop_toTopOf="parent"

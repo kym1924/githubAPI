@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
             name="search"
-            type="com.example.retrofitpractice.data.model.Search"/>
+            type="com.retrofit.github.data.model.Search"/>
         <variable
             name="searchViewModel"
-            type="com.example.retrofitpractice.ui.search.SearchViewModel"/>
+            type="com.retrofit.github.ui.search.SearchViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:layout_marginBottom="15dp">
+        android:layout_marginBottom="16dp">
 
         <ImageView
             android:id="@+id/img_search"
@@ -24,15 +25,16 @@
             android:src="@drawable/img_search"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/tv_latest_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="12dp"
             android:text="@{search.search}"
-            android:textSize="15sp"
+            android:textSize="16sp"
             android:textColor="@color/black"
             android:onClick="@{() -> searchViewModel.setSearchText(search.search)}"
             app:layout_constraintTop_toTopOf="@id/img_search"
@@ -47,7 +49,8 @@
             android:onClick="@{() -> searchViewModel.delete(search)}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
