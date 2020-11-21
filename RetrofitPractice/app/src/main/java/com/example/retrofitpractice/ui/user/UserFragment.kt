@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import com.example.retrofitpractice.R
 import com.example.retrofitpractice.data.api.RetrofitBuilder
 import com.example.retrofitpractice.data.api.SearchRepository
@@ -18,7 +17,6 @@ import com.example.retrofitpractice.databinding.FragmentUserBinding
 import com.example.retrofitpractice.ui.search.SearchViewModel
 
 class UserFragment : Fragment() {
-    private lateinit var binding : FragmentUserBinding
     private val searchViewModel : SearchViewModel by activityViewModels()
 
     override fun onAttach(context : Context) {
@@ -33,20 +31,12 @@ class UserFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         Log.d("lifeCycle", "user : onCreateView()")
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_user, container, false)
+        val binding : FragmentUserBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_user, container, false)
         binding.apply{
             viewModel = searchViewModel
             lifecycleOwner = this@UserFragment
         }
         return binding.root
-    }
-
-    override fun onStart() {
-        super.onStart()
-        Log.d("lifeCycle", "user : onStart()")
-        searchViewModel.search.observe(this, Observer { search ->
-            search?.let { if(search) searchViewModel.requestUsers() }
-        })
     }
 
     override fun onPause() {
