@@ -5,11 +5,12 @@ import android.view.inputmethod.EditorInfo
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.example.retrofitpractice.R
 import com.example.retrofitpractice.data.api.RetrofitBuilder
 import com.example.retrofitpractice.data.api.SearchRepository
-import com.example.retrofitpractice.databinding.ActivitySearchBinding
 import com.example.retrofitpractice.data.room.SearchDatabase
+import com.example.retrofitpractice.databinding.ActivitySearchBinding
 
 class SearchActivity : AppCompatActivity() {
     private lateinit var binding : ActivitySearchBinding
@@ -27,6 +28,13 @@ class SearchActivity : AppCompatActivity() {
         }
         val searchRepository = SearchRepository(RetrofitBuilder.service, SearchDatabase.getDatabase(this).searchDao())
         searchViewModel.init(searchRepository)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        searchViewModel.search.observe(this, Observer { search ->
+            search?.let { if(binding.tabMain.selectedTabPosition==0) searchViewModel.requestUsers() else searchViewModel.requestRepos() }
+        })
     }
 
     override fun onResume() {
