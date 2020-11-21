@@ -73,12 +73,4 @@ class SearchViewModel : ViewModel() {
     fun search() {
         _search.value = true
     }
-
-    fun clearUsers() {
-        _allUser.value = mutableListOf()
-    }
-
-    fun clearRepos() {
-        _allRepo.value = mutableListOf()
-    }
 }

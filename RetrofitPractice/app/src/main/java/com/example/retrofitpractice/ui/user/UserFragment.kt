@@ -42,6 +42,6 @@ class UserFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         Log.d("lifeCycle", "user : onPause()")
-        searchViewModel.clearRepos()
+        searchViewModel.resetKeyword()
     }
 }

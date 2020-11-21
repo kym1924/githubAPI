@@ -42,6 +42,6 @@ class RepoFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         Log.d("lifeCycle", "repo : onPause()")
-        searchViewModel.clearUsers()
+        searchViewModel.resetKeyword()
     }
 }
