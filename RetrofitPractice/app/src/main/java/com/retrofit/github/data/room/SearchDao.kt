@@ -6,7 +6,7 @@ import com.retrofit.github.data.model.Search
 
 @Dao
 interface SearchDao {
-    @Query("SELECT * from searchDb ORDER BY createdAt DESC")
+    @Query("SELECT * from searchDb ORDER BY createdAt DESC LIMIT 6")
     fun getSearch() : LiveData<List<Search>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
