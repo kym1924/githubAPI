@@ -5,10 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.retrofit.github.BR
 import com.retrofit.github.R
 import com.retrofit.github.data.model.Search
+import com.retrofit.github.ui.search.SearchDiffUtil
 import com.retrofit.github.ui.search.SearchViewModel
 
 
@@ -24,9 +26,11 @@ class SearchAdapter<B : ViewDataBinding>(private val searchViewModel : SearchVie
         holder.bind(search[position])
     }
 
-    internal fun setData(search : List<Search>) {
-        this.search = search
-        notifyDataSetChanged()
+    fun setData(newList : List<Search>) {
+        val diffUtilCallBack = SearchDiffUtil(search, newList)
+        val diffResult = DiffUtil.calculateDiff(diffUtilCallBack)
+        this.search = newList
+        diffResult.dispatchUpdatesTo(this)
     }
 
     inner class VHolder<B : ViewDataBinding>(itemView : View) : RecyclerView.ViewHolder(itemView) {
