@@ -1,5 +1,7 @@
 package com.retrofit.github.data.model
 
+import com.google.gson.annotations.SerializedName
+
 data class UsersData (
     val total_count : Int,
     val incomplete_results : Boolean,
@@ -8,5 +10,6 @@ data class UsersData (
 
 data class UsersItems (
     val login : String,
-    val html_url : String
+    @SerializedName("html_url")
+    val htmlUrl : String
 )
