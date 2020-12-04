@@ -1,18 +1,21 @@
 package com.retrofit.github.ui.search
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.retrofit.github.R
-import com.retrofit.github.data.api.SearchRepository
+import com.retrofit.github.data.api.search.SearchRepository
 import com.retrofit.github.data.model.ReposItems
 import com.retrofit.github.data.model.Search
 import com.retrofit.github.data.model.UsersItems
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class SearchViewModel : ViewModel() {
+class SearchViewModel @ViewModelInject constructor(
+    private val searchRepository: SearchRepository
+): ViewModel() {
 
     val tabItems = "USER REPO"
     val keyword = MutableLiveData<String>("")
@@ -21,7 +24,6 @@ class SearchViewModel : ViewModel() {
     val userLayout = MutableLiveData<Int>(R.layout.item_search_user)
     val repoLayout = MutableLiveData<Int>(R.layout.item_search_repo)
 
-    private lateinit var repository : SearchRepository
     lateinit var allSearch : LiveData<List<Search>>
 
     private val _allUser = MutableLiveData<List<UsersItems>>()
@@ -36,9 +38,8 @@ class SearchViewModel : ViewModel() {
     val search : LiveData<Boolean>
         get() = _search
 
-    fun init(searchRepository : SearchRepository) {
-        this.repository = searchRepository
-        allSearch = repository.getSearch()
+    fun init() = viewModelScope.launch(Dispatchers.IO) {
+        allSearch = searchRepository.getSearch()
     }
 
     fun resetKeyword() {
@@ -47,11 +48,11 @@ class SearchViewModel : ViewModel() {
 
     fun insert() = viewModelScope.launch(Dispatchers.IO) {
         val search = Search(search = keyword.value!!)
-        repository.insert(search)
+        searchRepository.insert(search)
     }
 
     fun delete(search : Search) = viewModelScope.launch(Dispatchers.IO) {
-        repository.delete(search)
+        searchRepository.delete(search)
     }
 
     fun setVisibility() {
@@ -63,11 +64,11 @@ class SearchViewModel : ViewModel() {
     }
 
     fun requestUsers() = viewModelScope.launch(Dispatchers.IO) {
-        _allUser.postValue(repository.requestUsers(keyword.value!!).items)
+        _allUser.postValue(searchRepository.requestUsers(keyword.value!!).items)
     }
 
     fun requestRepos() = viewModelScope.launch(Dispatchers.IO) {
-        _allRepo.postValue(repository.requestRepos(keyword.value!!).items)
+        _allRepo.postValue(searchRepository.requestRepos(keyword.value!!).items)
     }
 
     fun search() {

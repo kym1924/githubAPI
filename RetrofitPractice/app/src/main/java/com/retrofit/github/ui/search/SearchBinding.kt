@@ -5,13 +5,13 @@ import androidx.databinding.BindingAdapter
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
 import com.retrofit.github.data.model.Search
 import com.retrofit.github.databinding.ItemSearchHistoryBinding
 import com.retrofit.github.ui.adapter.SearchAdapter
 import com.retrofit.github.ui.adapter.SearchPagerAdapter
 import com.retrofit.github.util.addMainPagerListener
 import com.retrofit.github.util.addTabLayoutListener
-import com.google.android.material.tabs.TabLayout
 
 object SearchBinding {
     @BindingAdapter("visibleResetButton")

@@ -10,20 +10,17 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.retrofit.github.R
-import com.retrofit.github.data.api.RetrofitBuilder
-import com.retrofit.github.data.api.SearchRepository
-import com.retrofit.github.data.room.SearchDatabase
 import com.retrofit.github.databinding.FragmentUserBinding
 import com.retrofit.github.ui.search.SearchViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UserFragment : Fragment() {
     private val searchViewModel : SearchViewModel by activityViewModels()
 
     override fun onAttach(context : Context) {
         super.onAttach(context)
         Log.d("lifeCycle", "user : onAttach()")
-        val searchRepository = SearchRepository(RetrofitBuilder.service, SearchDatabase.getDatabase(context).searchDao())
-        searchViewModel.init(searchRepository)
     }
 
     override fun onCreateView(

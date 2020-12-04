@@ -7,11 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.retrofit.github.R
-import com.retrofit.github.data.api.RetrofitBuilder
-import com.retrofit.github.data.api.SearchRepository
-import com.retrofit.github.data.room.SearchDatabase
 import com.retrofit.github.databinding.ActivitySearchBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchActivity : AppCompatActivity() {
     private lateinit var binding : ActivitySearchBinding
     private val searchViewModel : SearchViewModel by viewModels()
@@ -26,8 +25,8 @@ class SearchActivity : AppCompatActivity() {
             tabLayout = binding.tabMain
             lifecycleOwner = this@SearchActivity
         }
-        val searchRepository = SearchRepository(RetrofitBuilder.service, SearchDatabase.getDatabase(this).searchDao())
-        searchViewModel.init(searchRepository)
+
+        searchViewModel.init()
     }
 
     override fun onStart() {
