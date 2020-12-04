@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.retrofit.github.R
 import com.retrofit.github.data.api.search.SearchRepository
 import com.retrofit.github.data.model.ReposItems
 import com.retrofit.github.data.model.Search
@@ -20,9 +19,6 @@ class SearchViewModel @ViewModelInject constructor(
     val tabItems = "USER REPO"
     val keyword = MutableLiveData<String>("")
     val visibility = MutableLiveData<Boolean>(true)
-
-    val userLayout = MutableLiveData<Int>(R.layout.item_search_user)
-    val repoLayout = MutableLiveData<Int>(R.layout.item_search_repo)
 
     lateinit var allSearch : LiveData<List<Search>>
 
