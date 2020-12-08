@@ -29,5 +29,4 @@ object DataModule {
     @Singleton
     fun provideSearchRepository(searchDataSourceImpl : SearchDataSource) =
         SearchRepository(searchDataSourceImpl)
-
 }

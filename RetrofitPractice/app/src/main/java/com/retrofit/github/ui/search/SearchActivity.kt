@@ -38,7 +38,7 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        searchViewModel.init()
+        searchViewModel.getAllSearch()
     }
 
     private fun setObserver() {

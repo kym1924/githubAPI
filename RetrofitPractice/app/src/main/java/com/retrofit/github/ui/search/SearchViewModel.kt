@@ -16,7 +16,6 @@ class SearchViewModel @ViewModelInject constructor(
     private val searchRepository: SearchRepository
 ): ViewModel() {
 
-    val tabItems = "USER REPO"
     val keyword = MutableLiveData<String>("")
     val visibility = MutableLiveData<Boolean>(true)
 
@@ -34,7 +33,7 @@ class SearchViewModel @ViewModelInject constructor(
     val search : LiveData<Boolean>
         get() = _search
 
-    fun init() = viewModelScope.launch(Dispatchers.IO) {
+    fun getAllSearch() = viewModelScope.launch(Dispatchers.IO) {
         allSearch = searchRepository.getSearch()
     }
 
