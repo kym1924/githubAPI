@@ -8,9 +8,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.retrofit.github.R
-import com.retrofit.github.data.model.ReposItems
+import com.retrofit.github.data.model.UsersItems
 import com.retrofit.github.databinding.FragmentUserBinding
-import com.retrofit.github.databinding.ItemSearchRepoBinding
+import com.retrofit.github.databinding.ItemSearchUserBinding
 import com.retrofit.github.ui.adapter.ResultAdapter
 import com.retrofit.github.ui.search.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -40,7 +40,7 @@ class UserFragment : Fragment() {
     }
 
     private fun setUserAdapter(binding : FragmentUserBinding) {
-        val adapter = ResultAdapter<ItemSearchRepoBinding, ReposItems>(R.layout.item_search_user)
+        val adapter = ResultAdapter<ItemSearchUserBinding, UsersItems>(R.layout.item_search_user)
         binding.rvUserResult.adapter = adapter
     }
 }
