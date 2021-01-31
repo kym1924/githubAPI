@@ -16,6 +16,6 @@ object SearchBinding {
     @BindingAdapter("setListItem")
     @JvmStatic
     fun setListItem(recyclerView : RecyclerView, searchList : List<Search>?) {
-        if (recyclerView.adapter != null) with(recyclerView.adapter as SearchAdapter<*>) { searchList?.let{ setData(it) } }
+        if (recyclerView.adapter != null) with(recyclerView.adapter as SearchAdapter<*>) { searchList?.let{ submitList(it) } }
     }
 }

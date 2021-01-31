@@ -6,31 +6,21 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.retrofit.github.BR
 import com.retrofit.github.R
 import com.retrofit.github.data.model.Search
-import com.retrofit.github.ui.search.SearchDiffUtil
 import com.retrofit.github.ui.search.SearchViewModel
 
 
-class SearchAdapter<B : ViewDataBinding>(private val searchViewModel : SearchViewModel) : RecyclerView.Adapter<SearchAdapter<B>.VHolder<B>>(){
-    var search = emptyList<Search>()
+class SearchAdapter<B : ViewDataBinding>(private val searchViewModel : SearchViewModel) : ListAdapter<Search, SearchAdapter<B>.VHolder<B>>(SearchDiffUtil()){
 
     override fun onCreateViewHolder(parent : ViewGroup, viewType : Int)
             = VHolder<B>(LayoutInflater.from(parent.context).inflate(R.layout.item_search_history, parent, false))
 
-    override fun getItemCount() = search.size
-
     override fun onBindViewHolder(holder: VHolder<B>, position: Int) {
-        holder.bind(search[position])
-    }
-
-    fun setData(newList : List<Search>) {
-        val diffUtilCallBack = SearchDiffUtil(search, newList)
-        val diffResult = DiffUtil.calculateDiff(diffUtilCallBack)
-        this.search = newList
-        diffResult.dispatchUpdatesTo(this)
+        holder.bind(getItem(position))
     }
 
     inner class VHolder<B : ViewDataBinding>(itemView : View) : RecyclerView.ViewHolder(itemView) {
@@ -41,5 +31,11 @@ class SearchAdapter<B : ViewDataBinding>(private val searchViewModel : SearchVie
             binding.setVariable(BR.search, search)
             binding.setVariable(BR.searchViewModel, searchViewModel)
         }
+    }
+
+    private class SearchDiffUtil : DiffUtil.ItemCallback<Search>() {
+        override fun areItemsTheSame(oldItem: Search, newItem: Search) = oldItem == newItem
+
+        override fun areContentsTheSame(oldItem: Search, newItem: Search)  = oldItem.search == newItem.search
     }
 }
